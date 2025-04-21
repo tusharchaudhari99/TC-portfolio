@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tushar Chaudhari | Electronics And Telecommunication Engineering Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;       /* Professional blue */
+            --primary-light: #3b82f6;
+            --secondary: #4f46e5;     /* Indigo */
+            --accent: #10b981;        /* Emerald */
+            --dark: #111827;          /* Dark background */
+            --light: #f9fafb;         /* Light background */
+            --text: #1f2937;          /* Dark text */
+            --text-light: #6b7280;    /* Light text */
+        }
+
+        .dark {
+            --primary: #60a5fa;
+            --primary-light: #93c5fd;
+            --secondary: #818cf8;
+            --accent: #34d399;
+            --dark: #f9fafb;
+            --light: #111827;
+            --text: #f3f4f6;
+            --text-light: #d1d5db;
+        }
+
+        body {
+            @apply transition-colors duration-300;
+            background-color: var(--light);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            @apply font-bold tracking-tight;
+        }
+
+        h1 { @apply text-4xl md:text-5xl; }
+        h2 { @apply text-3xl md:text-4xl; }
+        h3 { @apply text-2xl md:text-3xl; }
+        h4 { @apply text-xl md:text-2xl; }
+
+        /* Gradient text */
+        .gradient-text {
+            @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+        }
+
+        /* Cards */
+        .card {
+            @apply rounded-xl p-6 transition-all duration-300;
+            background-color: var(--dark);
+            color: var(--light);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .card:hover {
+            @apply shadow-lg;
+            transform: translateY(-5px);
+        }
+
+        /* Buttons */
+        .btn-primary {
+            @apply relative overflow-hidden px-6 py-3 rounded-lg font-medium transition-all duration-300;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        /* Navigation */
+        .nav-link {
+            @apply relative py-2 px-1 font-medium transition-all duration-300;
+            color: var(--text);
+        }
+
+        .nav-link::after {
+            content: '';
+            @apply absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .nav-link:hover::after {
+            @apply w-full;
+        }
+
+        /* Section styling */
+        section {
+            @apply py-20 px-6;
+        }
+
+        .section-title {
+            @apply text-center mb-16 relative;
+        }
+
+        .section-title::after {
+            content: '';
+            @apply block absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-16 h-1 rounded-full;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        /* Timeline */
+        .timeline-item {
+            @apply relative pl-8 pb-8 border-l-2;
+            border-color: var(--primary);
+        }
+
+        .timeline-item:last-child {
+            @apply pb-0;
+        }
+
+        .timeline-dot {
+            @apply absolute w-4 h-4 rounded-full left-[-9px];
+            background-color: var(--primary);
+            border: 3px solid var(--dark);
+        }
+
+        /* Project cards */
+        .project-card {
+            @apply card overflow-hidden h-full flex flex-col;
+        }
+
+        .project-image {
+            @apply h-48 w-full object-cover rounded-t-xl transition-transform duration-500;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+
+        /* Skill bars */
+        .skill-bar {
+            @apply w-full rounded-full h-2 overflow-hidden;
+            background-color: color-mix(in srgb, var(--text) 10%, transparent);
+        }
+
+        .skill-level {
+            @apply h-2 rounded-full transition-all duration-1000;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            width: 0;
+        }
+
+        /* Theme toggle */
+        .theme-toggle {
+            @apply w-12 h-6 rounded-full flex items-center transition duration-300 cursor-pointer;
+            background: color-mix(in srgb, var(--primary) 20%, transparent);
+        }
+
+        .toggle-circle {
+            @apply w-5 h-5 rounded-full shadow-md transform transition duration-300;
+            background-color: var(--dark);
+            margin-left: 4px;
+        }
+
+        .dark .toggle-circle {
+            transform: translateX(18px);
+        }
+
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Profile image */
+        .profile-image {
+            @apply rounded-full border-4 border-primary floating;
+            width: 240px;
+            height: 240px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body class="bg-light text-text">
+    <!-- Navigation -->
+    <nav class="bg-dark/80 backdrop-blur-md shadow-sm fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between h-20 items-center">
+                <a href="#" class="text-2xl font-bold gradient-text">
+                    Tushar Chaudhari
+                </a>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#projects" class="nav-link">Projects</a>
+                    <a href="#skills" class="nav-link">Skills</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                    <button id="themeToggle" class="ml-4 focus:outline-none">
+                        <div class="theme-toggle">
+                            <div class="toggle-circle"></div>
+                        </div>
+                    </button>
+                </div>
+                <div class="flex md:hidden items-center">
+                    <button id="mobileMenuButton" class="text-text mr-4 focus:outline-none text-2xl">
+                        ☰
+                    </button>
+                    <button id="themeToggleMobile" class="focus:outline-none">
+                        <div class="theme-toggle">
+                            <div class="toggle-circle"></div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-24">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center">
+            <div class="lg:w-1/2 mb-12 lg:mb-0 text-center lg:text-left animate__animated animate__fadeInLeft">
+                <h1 class="mb-6">
+                    Hi, I'm <span class="gradient-text">Tushar Chaudhari</span>
+                </h1>
+                <h2 class="text-2xl md:text-3xl font-semibold mb-6">
+                    Electronics And Telecommunication Engineering Student & Developer
+                </h2>
+                <p class="text-text-light mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+                    Passionate about creating innovative digital solutions with clean code and modern design principles.
+                    Currently pursuing BTech at MIT Academy of Engineering, Pune.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                    <a href="#projects" class="btn-primary">
+                        <span class="relative z-10 flex items-center justify-center">
+                            View Projects <i class="fas fa-arrow-down ml-2"></i>
+                        </span>
+                    </a>
+                    <a href="#contact" class="border border-primary text-primary px-6 py-3 rounded-lg font-medium hover:bg-primary/10 transition-all duration-300">
+                        Contact Me
+                    </a>
+                </div>
+            </div>
+            
+            <div class="lg:w-1/2 flex justify-center animate__animated animate__fadeInRight">
+                <div class="relative">
+                    <img src="Tushar photo.png" alt="Tushar Chaudhari" class="profile-image">
+                    <div class="absolute -inset-4 rounded-full border-4 border-dashed opacity-20 border-primary animate-spin-slow"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="bg-dark/10 backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="section-title animate__animated animate__fadeInDown">
+                About Me
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="animate__animated animate__fadeInLeft">
+                    <h3 class="mb-6">
+                        Who I Am
+                    </h3>
+                    <p class="text-text-light mb-6 leading-relaxed">
+                        I'm a first-year BTech student at MIT Academy of Engineering, Pune, specializing in Computer Engineering. 
+                        With a passion for technology and problem-solving, I'm constantly exploring new areas of software development.
+                    </p>
+                    <p class="text-text-light mb-8 leading-relaxed">
+                        My journey in tech began in school, and since then I've been building projects, learning new technologies, 
+                        and sharing my knowledge with others through teaching sessions.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="card p-4 text-center w-32">
+                            <div class="text-3xl font-bold gradient-text">1+</div>
+                            <div class="text-sm text-text-light">Years Experience</div>
+                        </div>
+                        <div class="card p-4 text-center w-32">
+                            <div class="text-3xl font-bold gradient-text">5+</div>
+                            <div class="text-sm text-text-light">Projects Completed</div>
+                        </div>
+                        <div class="card p-4 text-center w-32">
+                            <div class="text-3xl font-bold gradient-text">2</div>
+                            <div class="text-sm text-text-light">Certifications</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="animate__animated animate__fadeInRight">
+                    <div class="card p-8">
+                        <h3 class="mb-6">
+                            Education
+                        </h3>
+                        
+                        <div class="space-y-8">
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <h4 class="font-semibold">
+                                    <a href="https://mitaoe.ac.in/" target="_blank" class="hover:underline text-primary">
+                                        MIT Academy of Engineering, Pune
+                                    </a>
+                                </h4>
+                                <p class="text-text-light">BTech in Computer Engineering (2024-2028)</p>
+                                <p class="text-sm opacity-80 mt-1">Currently pursuing with focus on software development</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <h4 class="font-semibold">Jai Hind Junior College</h4>
+                                <p class="text-text-light">12th Grade (2022-2024)</p>
+                                <p class="text-sm opacity-80 mt-1">Passed with 83%</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <h4 class="font-semibold">Jai Hind High School</h4>
+                                <p class="text-text-light">10th Grade (2022)</p>
+                                <p class="text-sm opacity-80 mt-1">Passed with 85%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="section-title animate__animated animate__fadeInDown">
+                Featured Projects
+            </h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="project-card animate__animated animate__fadeInUp">
+                    <img src="Screenshot 2025-03-25 192253.png" alt="College Project Website" class="project-image">
+                    <div class="p-6 flex-grow">
+                        <h3 class="text-xl font-bold mb-2">College Website</h3>
+                        <p class="text-text-light mb-4">
+                            Responsive department website built with modern web technologies.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6">
+                        <a href="https://kypsawadxsbibxiwotrc6q.on.drv.tw/TechTitains/" target="_blank" 
+                           class="btn-primary w-full text-center py-2 block text-sm">
+                            <span class="relative z-10 flex items-center justify-center">
+                                Live Demo <i class="fas fa-external-link-alt ml-2"></i>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card animate__animated animate__fadeInUp animate__delay-1s">
+                    <img src="photo.png" alt="Tic Tac Toe Game" class="project-image">
+                    <div class="p-6 flex-grow">
+                        <h3 class="text-xl font-bold mb-2">Tic Tac Toe</h3>
+                        <p class="text-text-light mb-4">
+                            Interactive game with smooth animations and responsive design.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6">
+                        <a href="https://creativegametic.tiiny.site/" target="_blank" 
+                           class="btn-primary w-full text-center py-2 block text-sm">
+                            <span class="relative z-10 flex items-center justify-center">
+                                Play Game <i class="fas fa-gamepad ml-2"></i>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card animate__animated animate__fadeInUp animate__delay-2s">
+                    <img src="https://miro.medium.com/v2/resize:fit:1200/1*m0H6-tUbW6grMlezlb52yw.png" alt="Python Teaching" class="project-image">
+                    <div class="p-6 flex-grow">
+                        <h3 class="text-xl font-bold mb-2">Python Teaching</h3>
+                        <p class="text-text-light mb-4">
+                            Python teaching sessions with detailed code explanations.
+                        </p>
+                        <div class="mb-4">
+                            <h4 class="font-medium mb-2">Topics Covered:</h4>
+                            <ul class="text-sm space-y-2 text-text-light">
+                                <li class="flex items-center">
+                                    <i class="fas fa-check-circle mr-2 text-accent"></i>
+                                    File Operations
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check-circle mr-2 text-accent"></i>
+                                    OOP Concepts
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Teaching</span>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6">
+                        <a href="https://firebasestorage.googleapis.com/v0/b/preskilet.appspot.com/o/prets%2F202401070186%40mitaoe.ac.in%2F%20%7C%20Real%20Title%20%3A%20File%20operationsandDuplications%20%7C%20Date%20%3A%20Sun%2C%2030%20Mar%202025%2012%3A35%3A22%20GMT%20%2F%20%7C%20Real%20Title%20%3A%20File%20operationsandDuplications%20%7C%20Date%20%3A%20Sun%2C%2030%20Mar%202025%2012%3A35%3A23%20GMT%20?alt=media&token=9f2b2652-8e68-4b08-8132-1374284982e0" 
+                           target="_blank" class="btn-primary w-full text-center py-2 block text-sm">
+                            <span class="relative z-10 flex items-center justify-center">
+                                Watch Video <i class="fas fa-video ml-2"></i>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="bg-dark/10 backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="section-title animate__animated animate__fadeInDown">
+                My Skills
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="animate__animated animate__fadeInLeft">
+                    <div class="card p-8">
+                        <h3 class="mb-6">
+                            Technical Skills
+                        </h3>
+                        
+                        <div class="space-y-8">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">Python</span>
+                                    <span class="font-bold text-primary">80%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-level" data-level="80"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">HTML/CSS</span>
+                                    <span class="font-bold text-primary">80%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-level" data-level="80"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">JavaScript</span>
+                                    <span class="font-bold text-primary">65%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-level" data-level="65"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">Java</span>
+                                    <span class="font-bold text-primary">70%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-level" data-level="70"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="animate__animated animate__fadeInRight">
+                    <div class="card p-8">
+                        <h3 class="mb-6">
+                            Certifications
+                        </h3>
+                        
+                        <div class="space-y-6">
+                            <div class="border-l-4 border-primary pl-4 py-2">
+                                <h4 class="font-bold mb-1 flex items-center">
+                                    <i class="fas fa-certificate mr-2 text-primary"></i>
+                                    Python Essentials 1
+                                </h4>
+                                <p class="text-text-light mb-2 text-sm">
+                                    Cisco Networking Academy - Covered Python fundamentals including data types, control structures, and functions.
+                                </p>
+                                <a href="https://drive.google.com/file/d/1J93HIZKZwoKXT7lNk7Kh86G1zk40uvgp/view?usp=drive_link" target="_blank" 
+                                   class="inline-flex items-center text-sm font-medium text-primary">
+                                    View Certificate <i class="fas fa-arrow-right ml-1"></i>
+                                </a>
+                            </div>
+                            
+                            <div class="border-l-4 border-primary pl-4 py-2">
+                                <h4 class="font-bold mb-1 flex items-center">
+                                    <i class="fas fa-certificate mr-2 text-primary"></i>
+                                    Python Essentials 2
+                                </h4>
+                                <p class="text-text-light mb-2 text-sm">
+                                    Cisco Networking Academy - Advanced topics including OOP, file operations, and exception handling.
+                                </p>
+                                <a href="https://drive.google.com/file/d/1XF0G-8stvEvHmKqOeFTLUuhvh5MEIaOB/view?usp=drive_link" target="_blank" 
+                                   class="inline-flex items-center text-sm font-medium text-primary">
+                                    View Certificate <i class="fas fa-arrow-right ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <h3 class="mt-8 mb-4">
+                            Currently Learning
+                        </h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="flex items-center p-3 rounded-lg transition-all duration-300 hover:shadow-md bg-dark/5">
+                                <div class="w-10 h-10 rounded-full flex items-center justify-center mr-3 bg-primary/10 text-primary">
+                                    <i class="fab fa-react"></i>
+                                </div>
+                                <span>React</span>
+                            </div>
+                            <div class="flex items-center p-3 rounded-lg transition-all duration-300 hover:shadow-md bg-dark/5">
+                                <div class="w-10 h-10 rounded-full flex items-center justify-center mr-3 bg-primary/10 text-primary">
+                                    <i class="fas fa-database"></i>
+                                </div>
+                                <span>SQL</span>
+                            </div>
+                            <div class="flex items-center p-3 rounded-lg transition-all duration-300 hover:shadow-md bg-dark/5">
+                                <div class="w-10 h-10 rounded-full flex items-center justify-center mr-3 bg-primary/10 text-primary">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <span>AI/ML</span>
+                            </div>
+                            <div class="flex items-center p-3 rounded-lg transition-all duration-300 hover:shadow-md bg-dark/5">
+                                <div class="w-10 h-10 rounded-full flex items-center justify-center mr-3 bg-primary/10 text-primary">
+                                    <i class="fab fa-node-js"></i>
+                                </div>
+                                <span>Node.js</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="section-title animate__animated animate__fadeInDown">
+                Get In Touch
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="animate__animated animate__fadeInLeft">
+                    <h3 class="mb-6">
+                        Contact Information
+                    </h3>
+                    <p class="text-text-light mb-8 leading-relaxed">
+                        I'm currently looking for internship opportunities and would love to hear about your projects. 
+                        Feel free to reach out through any of these channels.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-full flex items-center justify-center mr-4 bg-primary/10 text-primary">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">Email</h4>
+                                <a href="mailto:tusharvc3434@gmail.com" class="text-text-light hover:underline">tusharvc3434@gmail.com</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-full flex items-center justify-center mr-4 bg-primary/10 text-primary">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">Location</h4>
+                                <p class="text-text-light">Dhule 424001, Maharashtra</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="mt-12 mb-6">
+                        Connect With Me
+                    </h3>
+                    <div class="flex space-x-6">
+                        <a href="https://www.linkedin.com/in/tushar-chaudhari-7b6043360?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3Bjv5NCZxLQSCkEs0GfkPeUw%3D%3D" target="_blank" 
+                           class="w-12 h-12 rounded-full flex items-center justify-center text-white text-xl transition-all duration-300 hover:-translate-y-1"
+                           style="background: #0a66c2">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://github.com/TusharChaudhari99" target="_blank" 
+                           class="w-12 h-12 rounded-full flex items-center justify-center text-white text-xl transition-all duration-300 hover:-translate-y-1"
+                           style="background: #333">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.instagram.com/tushzz_99/" target="_blank" 
+                           class="w-12 h-12 rounded-full flex items-center justify-center text-white text-xl transition-all duration-300 hover:-translate-y-1"
+                           style="background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@TusharChaudhari-n2k" target="_blank" 
+                           class="w-12 h-12 rounded-full flex items-center justify-center text-white text-xl transition-all duration-300 hover:-translate-y-1"
+                           style="background: #ff0000">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="animate__animated animate__fadeInRight">
+                    <div class="card p-8">
+                        <h3 class="mb-6">
+                            Send Me a Message
+                        </h3>
+                        <form class="contact-form">
+                            <div class="mb-6">
+                                <label for="name" class="block font-medium mb-2">Your Name</label>
+                                <input type="text" id="name" placeholder="Enter your name" class="w-full px-4 py-3 rounded-lg border border-text/20 focus:outline-none focus:ring-2 focus:ring-primary/50 bg-dark text-light">
+                            </div>
+                            <div class="mb-6">
+                                <label for="email" class="block font-medium mb-2">Your Email</label>
+                                <input type="email" id="email" placeholder="Enter your email" class="w-full px-4 py-3 rounded-lg border border-text/20 focus:outline-none focus:ring-2 focus:ring-primary/50 bg-dark text-light">
+                            </div>
+                            <div class="mb-6">
+                                <label for="message" class="block font-medium mb-2">Your Message</label>
+                                <textarea id="message" placeholder="Enter your message" rows="5" class="w-full px-4 py-3 rounded-lg border border-text/20 focus:outline-none focus:ring-2 focus:ring-primary/50 bg-dark text-light"></textarea>
+                            </div>
+                            <button type="submit" class="btn-primary w-full py-3">
+                                <span class="relative z-10 flex items-center justify-center">
+                                    Send Message <i class="fas fa-paper-plane ml-2"></i>
+                                </span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-10 bg-dark text-light">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <a href="#" class="text-2xl font-bold gradient-text">
+                        Tushar Chaudhari
+                    </a>
+                    <p class="text-sm text-text-light mt-1">Computer Engineering Student & Developer</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#home" class="text-text-light hover:text-primary transition-all duration-300">Home</a>
+                    <a href="#about" class="text-text-light hover:text-primary transition-all duration-300">About</a>
+                    <a href="#projects" class="text-text-light hover:text-primary transition-all duration-300">Projects</a>
+                    <a href="#contact" class="text-text-light hover:text-primary transition-all duration-300">Contact</a>
+                </div>
+            </div>
+            <div class="border-t border-text/20 mt-8 pt-6 text-center text-sm text-text-light">
+                <p>© 2025 Tushar Chaudhari. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const themeToggleMobile = document.getElementById('themeToggleMobile');
+        
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+        
+        themeToggle.addEventListener('click', toggleTheme);
+        themeToggleMobile.addEventListener('click', toggleTheme);
+        
+        // Check for saved theme preference
+        if (localStorage.getItem('theme') === 'dark' || 
+            (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        }
+        
+        // Animate skill bars on scroll
+        function animateSkillBars() {
+            const skillBars = document.querySelectorAll('.skill-level');
+            skillBars.forEach(bar => {
+                const level = bar.getAttribute('data-level');
+                bar.style.width = level + '%';
+            });
+        }
+        
+        // Animate elements when they come into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+                    observer.unobserve(entry.target);
+                    
+                    if (entry.target.classList.contains('skill-level')) {
+                        animateSkillBars();
+                    }
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Mobile menu toggle (would need additional HTML/CSS for mobile menu)
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        mobileMenuButton.addEventListener('click', () => {
+            // Implement mobile menu toggle functionality
+            console.log('Mobile menu clicked');
+        });
+    </script>
+</body>
+</html>
